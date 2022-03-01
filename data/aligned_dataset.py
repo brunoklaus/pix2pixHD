@@ -2,7 +2,7 @@ import os.path
 from data.base_dataset import BaseDataset, get_params, get_transform, normalize
 from data.image_folder import make_dataset
 from PIL import Image
-
+import numpy as np
 
 def alpha_composite(front, back):
     """Alpha composite two RGBA images.
