@@ -3,7 +3,8 @@ from data.base_dataset import BaseDataset, get_params, get_transform, normalize
 from data.image_folder import make_dataset
 from PIL import Image
 import numpy as np
-
+import torchvision.transforms as T
+affine_transfomer = T.RandomAffine(degrees=(3, -3), translate=(0.15, 0.15),fill=255)
 def alpha_composite(front, back):
     """Alpha composite two RGBA images.
 
@@ -81,7 +82,7 @@ class AlignedDataset(BaseDataset):
         params = get_params(self.opt, A.size)
         if self.opt.label_nc == 0:
             transform_A = get_transform(self.opt, params)
-            A_tensor = transform_A(A.convert('RGB'))
+            A_tensor = affine_transfomer(transform_A(A.convert('RGB')))
         else:
             transform_A = get_transform(self.opt, params, method=Image.NEAREST, normalize=False)
             A_tensor = transform_A(A) * 255.0
