@@ -4,7 +4,7 @@ from data.image_folder import make_dataset
 from PIL import Image
 import numpy as np
 import torchvision.transforms as T
-affine_transfomer = T.RandomAffine(degrees=(-3, 3), translate=(0.15, 0.15),fill=255)
+affine_transfomer = T.RandomAffine(degrees=(-3, 3),scale=(0.9,1.1), translate=(0.15, 0.15),fill=255)
 def alpha_composite(front, back):
     """Alpha composite two RGBA images.
 
